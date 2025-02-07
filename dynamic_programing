@@ -1,0 +1,27 @@
+class Solution:
+        def minCostClimbingStairs(self, cost: List[int]) -> int:
+        #BASE CASE: C[0] = 0 or C[1] = 0
+        #C[i] is cost to get to stair i
+        #C[n] = min(C[n-1] + cos[n-1], C[n-2] + cost[n-2])
+            return self.bottom_up(cost)
+        
+        def bottom_up(self, cost):
+            n = len(cost)
+            C = [0]*(n+1)
+            for i in range(2,n + 1):
+                C[i] = min( C[i - 1] + cost[i -1], C[i - 2] + cost[i - 2])
+                
+            return C[-1]
+
+        #def top_down(self, cost):
+         #   calc = {}
+          #  def C(i):
+           #     if i in calc:
+            #        return calc[i]
+            #    else:
+            #        result = 0 if i <= 1 else \
+            #         (min(  C[i - 1] + cost[i -1], C[i - 2] + cost[i - 2]))
+            #         calc[i] = result
+            #         return calc[i]
+
+            # return C(len(cost))
